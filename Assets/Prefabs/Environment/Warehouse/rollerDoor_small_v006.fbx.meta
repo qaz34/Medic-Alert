@@ -1,0 +1,186 @@
+fileFormatVersion: 2
+guid: 953b9e3f04583574d8969a14c7fbbd36
+timeCreated: 1501809683
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: rollerDoor_small
+    100002: //RootNode
+    100004: slat
+    100006: slat1
+    100008: slat10
+    100010: slat11
+    100012: slat12
+    100014: slat13
+    100016: slat14
+    100018: slat15
+    100020: slat2
+    100022: slat3
+    100024: slat4
+    100026: slat5
+    100028: slat6
+    100030: slat7
+    100032: slat8
+    100034: slat9
+    100036: slatGroup1
+    100038: slatGroupBack
+    100040: slatGroupFront
+    400000: rollerDoor_small
+    400002: //RootNode
+    400004: slat
+    400006: slat1
+    400008: slat10
+    400010: slat11
+    400012: slat12
+    400014: slat13
+    400016: slat14
+    400018: slat15
+    400020: slat2
+    400022: slat3
+    400024: slat4
+    400026: slat5
+    400028: slat6
+    400030: slat7
+    400032: slat8
+    400034: slat9
+    400036: slatGroup1
+    400038: slatGroupBack
+    400040: slatGroupFront
+    2300000: slat
+    2300002: slat1
+    2300004: slat10
+    2300006: slat11
+    2300008: slat12
+    2300010: slat13
+    2300012: slat14
+    2300014: slat15
+    2300016: slat2
+    2300018: slat3
+    2300020: slat4
+    2300022: slat5
+    2300024: slat6
+    2300026: slat7
+    2300028: slat8
+    2300030: slat9
+    3300000: slat
+    3300002: slat1
+    3300004: slat10
+    3300006: slat11
+    3300008: slat12
+    3300010: slat13
+    3300012: slat14
+    3300014: slat15
+    3300016: slat2
+    3300018: slat3
+    3300020: slat4
+    3300022: slat5
+    3300024: slat6
+    3300026: slat7
+    3300028: slat8
+    3300030: slat9
+    4300000: rollerDoor_small
+    4300002: slat15
+    4300004: slat14
+    4300006: slat13
+    4300008: slat12
+    4300010: slat11
+    4300012: slat10
+    4300014: slat9
+    4300016: slat8
+    4300018: slat
+    4300020: slat1
+    4300022: slat2
+    4300024: slat3
+    4300026: slat4
+    4300028: slat5
+    4300030: slat6
+    4300032: slat7
+    6400000: rollerDoor_small
+    6400002: slat
+    6400004: slat1
+    6400006: slat10
+    6400008: slat11
+    6400010: slat12
+    6400012: slat13
+    6400014: slat14
+    6400016: slat15
+    6400018: slat2
+    6400020: slat3
+    6400022: slat4
+    6400024: slat5
+    6400026: slat6
+    6400028: slat7
+    6400030: slat8
+    6400032: slat9
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: rollerDoor_small
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
