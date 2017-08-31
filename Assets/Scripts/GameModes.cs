@@ -32,11 +32,15 @@ public class GameModes : ScriptableObject
 
     void Update()
     {
-        if(settings.timer == 0)
+        if(settings.timer == -1)
         {
             
         }
     }
 
+    void endRound()
+    {
+
+    }
 
 }

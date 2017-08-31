@@ -292,32 +292,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 351071235}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c915a7fbae2724743b86ad7a159ea576, type: 3}
+  m_Script: {fileID: 11500000, guid: 7efe3f759d3a1154b90ba6b357ba835b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentGameMode: {fileID: 0}
-  defaultWeapons: {fileID: 0}
-  settings:
-  - maxTeamSize: 4
-    amountOfTeams: 2
-    scoreNeededToWin: 100
-    deathMultiplyer: 2
-    roundCount: 6
-    timer: 0
-  - maxTeamSize: 6
-    amountOfTeams: 4
-    scoreNeededToWin: 1
-    deathMultiplyer: 1
-    roundCount: 3
-    timer: 1
-  currentSettings:
-    maxTeamSize: 0
-    amountOfTeams: 0
-    scoreNeededToWin: 0
-    deathMultiplyer: 0
-    roundCount: 0
-    timer: 0
-  currentRound: 0
+  _Gamemode: {fileID: 11400000, guid: 87745c5fb5009a74eb040abd4bbe79b9, type: 2}
 --- !u!4 &351071237
 Transform:
   m_ObjectHideFlags: 0
@@ -463,6 +441,12 @@ Prefab:
       propertyPath: m_PlayerPrefab
       value: 
       objectReference: {fileID: 1631078002980616, guid: 4722420b22a2d1d49b38f89010dc8db0,
+        type: 2}
+    - target: {fileID: 114412149763292242, guid: a6e385ccb5396e9448a9176daeeefe74,
+        type: 2}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 1631078002980616, guid: a272a64fcd332204a879628b63052367,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a6e385ccb5396e9448a9176daeeefe74, type: 2}

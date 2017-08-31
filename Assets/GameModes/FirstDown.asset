@@ -16,11 +16,11 @@ MonoBehaviour:
   currentRound: 0
   settings:
     name: First Down
-    maxTeamSize: 0
-    amountOfTeams: 0
-    scoreNeededToWin: 0
+    maxTeamSize: 1
+    amountOfTeams: 8
+    scoreNeededToWin: 1500
     deathMultiplier: 0
-    roundCount: 0
+    roundCount: 3
     timer: -1
   currentSettings:
     name: 
