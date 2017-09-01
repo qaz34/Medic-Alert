@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 using System.Collections;
 
 namespace Prototype.NetworkLobby
@@ -8,7 +9,7 @@ namespace Prototype.NetworkLobby
     public class LobbyMainMenu : MonoBehaviour
     {
         public LobbyManager lobbyManager;
-
+        public NetworkDiscovery discovery;
         public RectTransform lobbyServerList;
         public RectTransform lobbyPanel;
 
@@ -28,7 +29,7 @@ namespace Prototype.NetworkLobby
 
         public void OnClickHost()
         {
-            lobbyManager.StartHost();
+            lobbyManager.StartHost();         
         }
 
         public void OnClickJoin()
@@ -68,7 +69,7 @@ namespace Prototype.NetworkLobby
             lobbyManager._isMatchmaking = true;
             lobbyManager.DisplayIsConnecting();
 
-            lobbyManager.SetServerInfo("Matchmaker Host", lobbyManager.networkAddress);
+            lobbyManager.SetServerInfo("Matchmaker Host", lobbyManager.matchHost);
         }
 
         public void OnClickOpenServerList()

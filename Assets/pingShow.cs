@@ -8,6 +8,7 @@ public class pingShow : MonoBehaviour
 
     void Update()
     {
-        GetComponent<Text>().text = NetworkManager.singleton.client.GetRTT().ToString();
+        if (NetworkManager.singleton)
+            GetComponent<Text>().text = NetworkManager.singleton.client.GetRTT().ToString();
     }
 }
