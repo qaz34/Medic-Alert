@@ -68,7 +68,7 @@ namespace Prototype.NetworkLobby
             lobbyManager._isMatchmaking = true;
             lobbyManager.DisplayIsConnecting();
 
-            lobbyManager.SetServerInfo("Matchmaker Host", lobbyManager.matchHost);
+            lobbyManager.SetServerInfo("Matchmaker Host", lobbyManager.networkAddress);
         }
 
         public void OnClickOpenServerList()

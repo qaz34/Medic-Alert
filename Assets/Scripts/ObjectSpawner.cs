@@ -6,18 +6,15 @@ public class ObjectSpawner : NetworkBehaviour
 {
     public GameObject objectToSpawn;
     public int lowTime, highTime;
-    // Use this for initialization
-    //void Start()
-    //{
-    //    if (isServer)
-    //        StartCoroutine(Spawn());
-    //}
+
     void OnEnable()
     {
-        //test comment for collab
-
         if (isServer)
+        {
+            StopAllCoroutines();
             StartCoroutine(Spawn());
+        }
+
     }
     void Update()
     {
@@ -28,7 +25,7 @@ public class ObjectSpawner : NetworkBehaviour
         for (;;)
         {
             GameObject Te = Instantiate(objectToSpawn, transform.position, transform.rotation);
-            NetworkServer.Spawn(Te);            
+            NetworkServer.Spawn(Te);
             yield return new WaitForSeconds(Random.Range(lowTime, highTime));
         }
     }

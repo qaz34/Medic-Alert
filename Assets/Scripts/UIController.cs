@@ -37,7 +37,7 @@ public class UIController : MonoBehaviour
 
         if (player)
         {
-            Update_UI();
+          //  Update_UI();
 
         }
         //uses the p button to pause and unpause the game
@@ -69,52 +69,16 @@ public class UIController : MonoBehaviour
             health = player.GetComponent<PlayerHealth>().health;
             numHealth.text = health.ToString();
             Ammo.text = equiptWep.curBullets.ToString() + "/" + equiptWep.ammoRemaining.ToString();
-            // curAmmo.text = equiptWep.curBullets.ToString();
-            //maxAmmo.text = equiptWep.ammoRemaining.ToString();
         }
     }
-
-
-
-    void OnDestroy()
-    {
-
-    }
-
     void GameOverActive()
     {
         gameOverPanel.SetActive(true);
     }
-
     public void QuitGame()
     {
         Application.Quit();
     }
-
-    //shows objects with ShowOnPause tag
-    public void showPaused()
-    {
-        //foreach (GameObject g in pauseObjects)
-        //{
-        //    //g.SetActive(true);
-        //    pauseMenu.SetActive(true);
-        //    Time.timeScale = 0;
-        //    playerShoot.SetActive(false);
-        //}
-    }
-
-    //hides objects with ShowOnPause tag
-    public void hidePaused()
-    {
-        //foreach (GameObject g in pauseObjects)
-        //{
-        //    //g.SetActive(false);
-        //    pauseMenu.SetActive(false);
-        //    Time.timeScale = 1;
-        //    playerShoot.SetActive(true);
-        //}
-    }
-
     public void LoadLevel()
     {
         SceneManager.LoadScene("Scene1");

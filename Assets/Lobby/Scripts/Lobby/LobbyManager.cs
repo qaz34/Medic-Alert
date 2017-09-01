@@ -18,7 +18,7 @@ namespace Prototype.NetworkLobby
 
         [Header("Unity UI Lobby")]
         [Tooltip("Time in second between all players ready & match start")]
-        public float prematchCountdown = 5.0f;
+        public float prematchCountdown = 1.0f;
 
         [Space]
         [Header("UI Reference")]

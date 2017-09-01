@@ -30,8 +30,7 @@ public class PlayerCont : NetworkBehaviour
     float fall;
     [HideInInspector]
     public Vector3 outSideForce;
-    [SyncVar]
-    Vector3 syncPos;
+    Vector3 velocity;
     [System.Serializable]
     public struct FallDamage
     {
@@ -72,10 +71,12 @@ public class PlayerCont : NetworkBehaviour
     {
         GameObject.FindGameObjectWithTag("LeaderBoard").GetComponent<PlayerLeaderBoard>().NewPlayer(gameObject);
         if (isLocalPlayer)
+        {
             CmdSetName(GameObject.FindGameObjectWithTag("Manager").GetComponent<UserNames>().userName);
-        cCont = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked;
-        cameraRot = Camera.main.transform.eulerAngles;
+            cCont = GetComponent<CharacterController>();
+            Cursor.lockState = CursorLockMode.Locked;
+            cameraRot = Camera.main.transform.eulerAngles;
+        }
         health = GetComponent<PlayerHealth>();
         weaponController = GetComponentInChildren<WeaponController>();
         if (!isLocalPlayer)
@@ -95,7 +96,6 @@ public class PlayerCont : NetworkBehaviour
         GameObject go = weaponController.Fire(pos, true);
         if (go)
             NetworkServer.Spawn(go);
-
     }
     [Command]
     void CmdSetName(string name)
@@ -104,48 +104,54 @@ public class PlayerCont : NetworkBehaviour
     }
     void Update()
     {
-        //if (isServer)
-        //{
-        //    syncPos = transform.position;
-        //}
-        //if (!isLocalPlayer && !isServer)
-        //{
-        //    transform.position = Vector3.Lerp(transform.position, syncPos, .5f);
-        //}
         if (!isLocalPlayer)
             return;
-        Debug.Log(NetworkManager.singleton.client.GetRTT());
-        if (!cCont.isGrounded)
-            if (yMovement < 0 && max.magnitude == 0)
-                max = transform.position;
-            else
-                fall = max.y - transform.position.y;
+
+        CheckSprint();
+        Movement();
+        CheckFire();
+        CalculateFall();
+        CameraRotation();
+    }
+    void Movement()
+    {
         var movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
         movement = transform.TransformDirection(movement) * moveSpeed;
         if (cCont.isGrounded)
+        {
             yMovement = Physics.gravity.y * Time.deltaTime;
-        if (Input.GetButtonDown("Jump") && cCont.isGrounded)
-            movement.y = yMovement = jumpSpeed;
-        if (Input.GetButtonDown("Reload") && weaponController.equipWep.GetComponent<WeaponBase>().curBullets < weaponController.equipWep.GetComponent<WeaponBase>().capacity)
-            weaponController.equipWep.GetComponent<WeaponBase>().Reload();
+            velocity = Vector3.zero;
+        }
         movement.y = yMovement += Physics.gravity.y * Time.deltaTime * fallSpeed;
-        if (movement.y > 0 && Physics.SphereCast(new Ray(transform.position, transform.up), widthOfPlayer, topOfPlayer, 1 << Physics.IgnoreRaycastLayer))
+        if (Input.GetButtonDown("Jump") && cCont.isGrounded)
+        {
+            velocity = movement / 2;
+            velocity.y = 0;
+            movement.y = yMovement = jumpSpeed;
+        }
+        if (movement.y > 0 && Physics.SphereCast(new Ray(transform.position, transform.up), widthOfPlayer, topOfPlayer))
         {
             movement.y = 0;
             yMovement = 0;
         }
         movement += outSideForce;
+        velocity *= .999f;
+        movement += velocity;
         outSideForce = Vector3.zero;
         cCont.Move(movement * Time.deltaTime);
-        Vector3 thisMove;
-        if (cameraRot.x > 80)
-            thisMove = new Vector3((-Input.GetAxis("Mouse Y") < 0) ? -Input.GetAxis("Mouse Y") : 0, Input.GetAxis("Mouse X")) * 4;
-        else if (cameraRot.x < -80)
-            thisMove = new Vector3((-Input.GetAxis("Mouse Y") > 0) ? -Input.GetAxis("Mouse Y") : 0, Input.GetAxis("Mouse X")) * 4;
-        else
-            thisMove = new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X")) * 4;
+    }
+    void CalculateFall()
+    {
+        if (!cCont.isGrounded)
+            if (yMovement < 0 && max.magnitude == 0)
+                max = transform.position;
+            else
+                fall = max.y - transform.position.y;
+    }
+    void CheckFire()
+    {
+        if (Input.GetButtonDown("Reload") && weaponController.equipWep.GetComponent<WeaponBase>().curBullets < weaponController.equipWep.GetComponent<WeaponBase>().capacity)
+            weaponController.equipWep.GetComponent<WeaponBase>().Reload();
 
         if (Input.GetButton("Fire1"))
         {
@@ -155,6 +161,26 @@ public class PlayerCont : NetworkBehaviour
                 weaponController.FireNoBullet(true);
             }
         }
+    }
+    void CameraRotation()
+    {
+        Vector3 thisMove;
+        if (cameraRot.x > 80)
+            thisMove = new Vector3((-Input.GetAxis("Mouse Y") < 0) ? -Input.GetAxis("Mouse Y") : 0, Input.GetAxis("Mouse X")) * 4;
+        else if (cameraRot.x < -80)
+            thisMove = new Vector3((-Input.GetAxis("Mouse Y") > 0) ? -Input.GetAxis("Mouse Y") : 0, Input.GetAxis("Mouse X")) * 4;
+        else
+            thisMove = new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X")) * 4;
+        cameraRot += thisMove;
+        if (!isLocalPlayer)
+            return;
+        transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+        Camera.main.transform.eulerAngles = cameraRot;
+
+    }
+    void CheckSprint()
+    {
         if (cCont.isGrounded)
             if (Input.GetButton("Fire3"))
             {
@@ -171,14 +197,6 @@ public class PlayerCont : NetworkBehaviour
             float temp = Mathf.Lerp(moveSpeed, running.airMoveSpeed, running.airRampSpeed);
             moveSpeed = temp;
         }
-        cameraRot += thisMove;
-
-    }
-    void LateUpdate()
-    {
-        if (!isLocalPlayer)
-            return;
-        Camera.main.transform.eulerAngles = cameraRot;
     }
     [Command]
     void CmdFallDamage(int damage)

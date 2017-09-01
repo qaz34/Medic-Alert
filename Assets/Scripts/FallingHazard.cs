@@ -54,7 +54,7 @@ public class FallingHazard : NetworkBehaviour
     //            RpcSync(new RbValues(rb));
     //        }
     //}
-    private void Update()
+    private void FixedUpdate()
     {
         if (!isServer)
             return;

@@ -191,7 +191,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1631078002980616}
   m_LocalRotation: {x: 0.0030862982, y: -0.67609876, z: 0.002832037, w: 0.7367992}
-  m_LocalPosition: {x: -14.465174, y: -0.78903514, z: -8.824194}
+  m_LocalPosition: {x: -6.6817894, y: -6.6099224, z: -1.6612124}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224715937533787810}
@@ -390,8 +390,8 @@ MonoBehaviour:
     airMoveSpeed: 4
   jumpSpeed: 12
   fallSpeed: 3
-  topOfPlayer: 1.52
-  widthOfPlayer: 14.8
+  topOfPlayer: 0.72
+  widthOfPlayer: 0.38
   outSideForce: {x: 0, y: 0, z: 0}
   fallDamageStats:
     curve:
