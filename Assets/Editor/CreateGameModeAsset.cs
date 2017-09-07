@@ -9,9 +9,9 @@ public class MakeGameModeAsset : MonoBehaviour
     public static void CreateGameModeAsset()
     {
         GameModes gamemode = ScriptableObject.CreateInstance<GameModes>();
-        string filePath = AssetDatabase.GetAssetPath(Selection.activeObject);
-        AssetDatabase.CreateAsset(gamemode, filePath + "GameMode.asset");
+        AssetDatabase.CreateAsset(gamemode, "Assets/GameModes/GameModes.asset");
         AssetDatabase.SaveAssets();
+        Debug.Log("Gamemode asset created and placed in the game modes folder");
     }
 
 }
